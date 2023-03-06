@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 
 public class spotify {
 
-	private JFrame Login;
+	public JFrame Login;
 	private JTextField user;
 	private JPasswordField password;
 
@@ -57,7 +57,7 @@ public class spotify {
 	private void initialize() {
 		Login = new JFrame();
 		Login.getContentPane().setBackground(new Color(255, 255, 255));
-		Login.setBounds(100, 100, 894, 689);
+		Login.setBounds(100, 100, 894, 643);
 		Login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Login.getContentPane().setLayout(null);
 		
@@ -254,13 +254,9 @@ public class spotify {
 		JButton btnSignUpFor = new JButton("  SIGN UP FOR SPOTIFY");
 		btnSignUpFor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String url_open ="https://www.spotify.com/ph-en/signup?flow_id=b9b53905-991c-4f53-95aa-23c1245c6126%3A1678095070&forward_url=https%3A%2F%2Fopen.spotify.com%2F";
-				try {
-					java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} 
+				SignUp su = new SignUp();
+				su.sign();
+				Login.dispose();
 			}
 		});
 		btnSignUpFor.setForeground(Color.GRAY);
