@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextArea;
@@ -22,7 +23,7 @@ import javax.swing.ImageIcon;
 public class ForgotPassword {
 
 	public JFrame frame;
-	private JTextField textField;
+	private JTextField email;
 	/**
 	 * Launch the application.
 	 */
@@ -85,12 +86,21 @@ public class ForgotPassword {
 		lblNewLabel_3.setBounds(124, 213, 140, 14);
 		frame.getContentPane().add(lblNewLabel_3);
 		
-		textField = new JTextField();
-		textField.setBounds(124, 228, 280, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		email = new JTextField();
+		email.setBounds(124, 228, 280, 20);
+		frame.getContentPane().add(email);
+		email.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Send");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(email.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "You must enter a valid email!");
+				} else {
+					JOptionPane.showMessageDialog(null, "We've sent you an email. Just follow the instructions to reset your password.");
+				}
+			}
+		});
 		btnNewButton.setBounds(146, 267, 82, 25);
 		frame.getContentPane().add(btnNewButton);
 		
