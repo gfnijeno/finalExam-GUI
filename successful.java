@@ -11,10 +11,11 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class successful {
 
-	private JFrame frame;
+	private JFrame frmWelcome;
 
 	/**
 	 * Launch the application.
@@ -24,7 +25,7 @@ public class successful {
 			public void run() {
 				try {
 					successful window = new successful();
-					window.frame.setVisible(true);
+					window.frmWelcome.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,39 +44,48 @@ public class successful {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmWelcome = new JFrame();
+		frmWelcome.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\murei\\Downloads\\386381954011578368.png"));
+		frmWelcome.setTitle("Welcome!");
+		frmWelcome.getContentPane().setBackground(new Color(255, 255, 255));
+		frmWelcome.setBounds(100, 100, 450, 300);
+		frmWelcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmWelcome.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Login Successful!");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblNewLabel.setBounds(86, 112, 263, 39);
-		frame.getContentPane().add(lblNewLabel);
+		frmWelcome.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				spotify sp = new spotify();
 				sp.Login.setVisible(true);
-				frame.dispose();
+				frmWelcome.dispose();
 			}
 		});
 		btnNewButton.setBounds(175, 207, 85, 21);
-		frame.getContentPane().add(btnNewButton);
+		frmWelcome.getContentPane().add(btnNewButton);
 		
 		JButton btnProceedToPlaylist = new JButton("Proceed to Playlist Picker");
+		btnProceedToPlaylist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				playlist pl = new playlist();
+				pl.list();
+				frmWelcome.dispose();
+			}
+		});
 		btnProceedToPlaylist.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnProceedToPlaylist.setBounds(111, 176, 214, 21);
-		frame.getContentPane().add(btnProceedToPlaylist);
+		frmWelcome.getContentPane().add(btnProceedToPlaylist);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\murei\\Downloads\\Spotify_Logo_CMYK_Black (1).png"));
 		lblNewLabel_1.setBounds(73, 0, 289, 92);
-		frame.getContentPane().add(lblNewLabel_1);
+		frmWelcome.getContentPane().add(lblNewLabel_1);
 	}
 
 }
