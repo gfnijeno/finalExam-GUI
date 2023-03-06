@@ -203,13 +203,9 @@ public class spotify {
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String url_open ="https://accounts.spotify.com/en/password-reset?flow_id=22fda1f8-20d9-4a9f-8f00-0e29f127379a%3A1678093378";
-				try {
-					java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} 
+				ForgotPassword fr = new ForgotPassword();
+				fr.fp();
+				Login.dispose();
 			}
 		});
 		lblNewLabel_2.setBounds(274, 440, 137, 13);
