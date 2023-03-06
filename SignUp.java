@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -20,16 +21,17 @@ import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SignUp {
 
 	public JFrame frame;
-	private JTextField txtEnterYourEmail;
-	private JTextField textField_1;
+	private JTextField email;
 	private JPasswordField passwordField;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField profile;
+	private JTextField day;
+	private JTextField year;
 
 	/**
 	 * Launch the application.
@@ -67,20 +69,14 @@ public class SignUp {
 		JLabel lblNewLabel_6_2_2_1_1_1 = new JLabel("Enter a profile name.");
 		lblNewLabel_6_2_2_1_1_1.setForeground(SystemColor.textInactiveText);
 		lblNewLabel_6_2_2_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_6_2_2_1_1_1.setBounds(89, 303, 151, 14);
+		lblNewLabel_6_2_2_1_1_1.setBounds(88, 296, 151, 14);
 		frame.getContentPane().add(lblNewLabel_6_2_2_1_1_1);
 		
 		JLabel lblNewLabel_6_2_2_1_1 = new JLabel("Create a password.");
 		lblNewLabel_6_2_2_1_1.setForeground(SystemColor.textInactiveText);
 		lblNewLabel_6_2_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_6_2_2_1_1.setBounds(89, 263, 116, 14);
+		lblNewLabel_6_2_2_1_1.setBounds(89, 239, 116, 14);
 		frame.getContentPane().add(lblNewLabel_6_2_2_1_1);
-		
-		JLabel lblNewLabel_6_2_2_1 = new JLabel("Enter your email again.");
-		lblNewLabel_6_2_2_1.setForeground(SystemColor.textInactiveText);
-		lblNewLabel_6_2_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_6_2_2_1.setBounds(89, 223, 151, 14);
-		frame.getContentPane().add(lblNewLabel_6_2_2_1);
 		
 		JLabel lblNewLabel_6_2_2 = new JLabel("Enter your email.");
 		lblNewLabel_6_2_2.setForeground(SystemColor.textInactiveText);
@@ -149,46 +145,36 @@ public class SignUp {
 		lblNewLabel_4.setBounds(82, 160, 248, 24);
 		frame.getContentPane().add(lblNewLabel_4);
 		
-		txtEnterYourEmail = new JTextField();
-		txtEnterYourEmail.setToolTipText("");
-		txtEnterYourEmail.setForeground(new Color(192, 192, 192));
-		txtEnterYourEmail.setBounds(82, 180, 248, 20);
-		frame.getContentPane().add(txtEnterYourEmail);
-		txtEnterYourEmail.setColumns(10);
-		
-		JLabel lblNewLabel_4_1 = new JLabel("Confirm your email");
-		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblNewLabel_4_1.setBounds(82, 200, 248, 24);
-		frame.getContentPane().add(lblNewLabel_4_1);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(82, 220, 248, 20);
-		frame.getContentPane().add(textField_1);
+		email = new JTextField();
+		email.setToolTipText("");
+		email.setForeground(new Color(192, 192, 192));
+		email.setBounds(82, 180, 248, 20);
+		frame.getContentPane().add(email);
+		email.setColumns(10);
 		
 		JLabel lblNewLabel_4_1_1 = new JLabel("Create a password");
 		lblNewLabel_4_1_1.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblNewLabel_4_1_1.setBounds(82, 240, 248, 24);
+		lblNewLabel_4_1_1.setBounds(82, 216, 248, 24);
 		frame.getContentPane().add(lblNewLabel_4_1_1);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(82, 260, 151, 20);
+		passwordField.setBounds(82, 236, 151, 20);
 		frame.getContentPane().add(passwordField);
 		
 		
 		JLabel lblNewLabel_4_1_1_1 = new JLabel("What should we call you?");
 		lblNewLabel_4_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblNewLabel_4_1_1_1.setBounds(82, 280, 248, 24);
+		lblNewLabel_4_1_1_1.setBounds(82, 273, 248, 24);
 		frame.getContentPane().add(lblNewLabel_4_1_1_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(82, 300, 248, 20);
-		frame.getContentPane().add(textField_2);
+		profile = new JTextField();
+		profile.setColumns(10);
+		profile.setBounds(82, 293, 248, 20);
+		frame.getContentPane().add(profile);
 		
 		JLabel lblNewLabel_5 = new JLabel("This appears on your profile.");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblNewLabel_5.setBounds(82, 320, 147, 14);
+		lblNewLabel_5.setBounds(81, 313, 147, 14);
 		frame.getContentPane().add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_4_2 = new JLabel("What's your date of birth?");
@@ -201,10 +187,10 @@ public class SignUp {
 		lblNewLabel_6.setBounds(82, 366, 46, 14);
 		frame.getContentPane().add(lblNewLabel_6);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(82, 383, 53, 20);
-		frame.getContentPane().add(textField_3);
+		day = new JTextField();
+		day.setColumns(10);
+		day.setBounds(82, 383, 53, 20);
+		frame.getContentPane().add(day);
 		
 		JLabel lblNewLabel_6_1 = new JLabel("Month");
 		lblNewLabel_6_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -216,10 +202,10 @@ public class SignUp {
 		lblNewLabel_6_1_1.setBounds(263, 366, 46, 14);
 		frame.getContentPane().add(lblNewLabel_6_1_1);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(262, 383, 68, 20);
-		frame.getContentPane().add(textField_4);
+		year = new JTextField();
+		year.setColumns(10);
+		year.setBounds(262, 383, 68, 20);
+		frame.getContentPane().add(year);
 		
 		JLabel lblNewLabel_4_2_1 = new JLabel("What's your gender?");
 		lblNewLabel_4_2_1.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -252,6 +238,17 @@ public class SignUp {
 		frame.getContentPane().add(rdbtnPreferNotTo);
 		
 		JButton btnNewButton_2 = new JButton("Sign Up");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(email.getText().isEmpty() || passwordField.getText().isEmpty() || profile.getText().isEmpty() || day.getText().isEmpty() || year.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "You must answer all fields.");
+				} else {
+					successful ss = new successful();
+					ss.success();
+					frame.dispose();
+				}
+			}
+		});
 		btnNewButton_2.setBackground(new Color(50, 205, 50));
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2.setBounds(162, 480, 90, 25);
@@ -276,11 +273,11 @@ public class SignUp {
 		lblNewLabel_8.setBounds(227, 509, 46, 14);
 		frame.getContentPane().add(lblNewLabel_8);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setForeground(SystemColor.textInactiveText);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
-		comboBox.setBounds(145, 382, 107, 21);
-		frame.getContentPane().add(comboBox);
+		JComboBox month = new JComboBox();
+		month.setForeground(SystemColor.textInactiveText);
+		month.setModel(new DefaultComboBoxModel(new String[] {"Month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
+		month.setBounds(145, 382, 107, 21);
+		frame.getContentPane().add(month);
 		
 		JSeparator right_separator_1 = new JSeparator();
 		right_separator_1.setBounds(227, 520, 35, 4);
@@ -298,7 +295,7 @@ public class SignUp {
 			}
 		});
 		rdbtnNewRadioButton_1.setBackground(new Color(255, 255, 255));
-		rdbtnNewRadioButton_1.setBounds(236, 260, 116, 21);
+		rdbtnNewRadioButton_1.setBounds(231, 236, 116, 21);
 		frame.getContentPane().add(rdbtnNewRadioButton_1);
 	}
 }
