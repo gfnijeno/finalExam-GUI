@@ -218,18 +218,16 @@ public class spotify {
 		JButton btnNewButton_1 = new JButton("Log In");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(user.getText().endsWith("@students.national-u.edu.ph")) {
-					if(password.getText().isEmpty()) {
+				if(user.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "You must enter a valid email or username.");
+				}
+				else if(password.getText().isEmpty()) {
 						JOptionPane.showMessageDialog(null, "You must enter a password.");
 					} else {
-						tuition tu = new tuition();
-						tu.tWindow();
+						successful ss = new successful();
+						ss.success();
 						Login.dispose();
 					}
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Invalid Credentials.");
-				}
 			}
 		});
 		btnNewButton_1.setBackground(new Color(50, 205, 50));
