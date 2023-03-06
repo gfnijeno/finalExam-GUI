@@ -21,6 +21,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class spotify {
 
@@ -56,6 +57,8 @@ public class spotify {
 	 */
 	private void initialize() {
 		Login = new JFrame();
+		Login.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\murei\\Downloads\\386381954011578368.png"));
+		Login.setTitle("Log In");
 		Login.getContentPane().setBackground(new Color(255, 255, 255));
 		Login.setBounds(100, 100, 894, 643);
 		Login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
