@@ -13,21 +13,28 @@ import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.util.Scanner;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
-import javax.swing.JCheckBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.JCheckBox;
 
 public class spotify {
+	File file = new File(System.getProperty("user.home")+"\"C:\\Users\\murei\\OneDrive\\Desktop\\save.txt\"");
 
 	public JFrame Login;
 	private JTextField user;
 	private JPasswordField password;
+	
 
 	/**
 	 * Launch the application.
@@ -221,16 +228,18 @@ public class spotify {
 		JButton btnNewButton_1 = new JButton("Log In");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(user.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "You must enter a valid email or username.");
+				if(user.getText().equals("mureigne") && password.getText().equals("marklee")) {
+					successful ss = new successful();
+					ss.success();
+					Login.dispose();
 				}
-				else if(password.getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null, "You must enter a password.");
-					} else {
-						successful ss = new successful();
-						ss.success();
-						Login.dispose();
-					}
+				else if(user.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "You must enter a valid email or username.", "Woops!", JOptionPane.ERROR_MESSAGE);
+				} else if(password.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "You must enter a password.", "Woops!", JOptionPane.ERROR_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "Invalid Email or Password", "Woops!", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		btnNewButton_1.setBackground(new Color(50, 205, 50));
@@ -261,5 +270,47 @@ public class spotify {
 		btnSignUpFor.setBackground(Color.WHITE);
 		btnSignUpFor.setBounds(274, 541, 331, 27);
 		Login.getContentPane().add(btnSignUpFor);
+		
+		JCheckBox remember = new JCheckBox("Remember me");
+		remember.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(remember.isSelected()){
+	                  SAVE();
+				}
+			}
+			 public void SAVE(){      //Save the UserName and Password (for one user)
+			      try {
+			         if(!file.exists()) file.createNewFile();  //if the file !exist create a new one
+			         BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsolutePath()));
+			         bw.write(user.getText()); //write the name
+			         bw.newLine(); //leave a new Line
+			         bw.write(password.getPassword()); //write the password
+			         bw.close(); //close the BufferdWriter
+			      } catch (IOException e) { e.printStackTrace(); }  
+			 }
+			 public void UPDATE(){ //UPDATE ON OPENING THE APPLICATION
+
+			        try {
+			          if(file.exists()){    //if this file exists
+
+			            Scanner scan = new Scanner(file);   //Use Scanner to read the File
+
+			            user.setText(scan.nextLine());  //append the text to name field
+			            password.setText(scan.nextLine()); //append the text to password field
+			            scan.close();
+			          }
+
+			        } catch (FileNotFoundException e) {         
+			            e.printStackTrace();
+			        }                
+
+			   }
+		});
+		
+		
+		remember.setBackground(new Color(255, 255, 255));
+		remember.setBounds(271, 413, 133, 21);
+		Login.getContentPane().add(remember);
 	}
 }
