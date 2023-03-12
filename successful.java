@@ -69,11 +69,11 @@ public class successful {
 		btnNewButton.setBounds(175, 207, 85, 21);
 		frmWelcome.getContentPane().add(btnNewButton);
 		
-		JButton btnProceedToPlaylist = new JButton("Proceed to Playlist Picker");
+		JButton btnProceedToPlaylist = new JButton("Proceed to Enrollment Page");
 		btnProceedToPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				playlist pl = new playlist();
-				pl.list();
+				tuition tu = new tuition();
+				tu.enroll();
 				frmWelcome.dispose();
 			}
 		});
