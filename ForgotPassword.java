@@ -97,10 +97,12 @@ public class ForgotPassword {
 		JButton btnNewButton = new JButton("Send");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(email.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "You must enter a valid email or username!");
+				if(email.getText().equals("mureigne") || email.getText().equals("mureignedaet@gmail.com")) {
+					resetPassword rp = new resetPassword();
+					rp.reset();
+					frmForgotPassword.dispose();
 				} else {
-					JOptionPane.showMessageDialog(null, "We've sent you an email. Just follow the instructions to reset your password.");
+					JOptionPane.showMessageDialog(null, "You must enter a valid email or username!");
 				}
 			}
 		});
